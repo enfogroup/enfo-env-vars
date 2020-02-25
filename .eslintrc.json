@@ -1,0 +1,47 @@
+{
+  "env": {
+      "es6": true,
+      "node": true
+  },
+  "extends": [
+      "standard"
+  ],
+  "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "@typescript-eslint"
+  ],
+  "rules": {
+    "semi": ["error", "always"]
+  },
+  "overrides": [
+    {
+      "files": ["src/models/*.ts"],
+      "rules": {
+        "no-unused-vars": "off",
+        "camelcase": "off"
+      }
+    },
+    {
+      "files": ["test/**/*.ts"],
+      "rules": {
+        "no-unused-vars": "off",
+        "no-undef": "off",
+        "no-unused-expressions": "off"
+      }
+    },
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": [2, { "args": "none" }]
+      }
+    }
+  ]
+}
