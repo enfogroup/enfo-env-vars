@@ -4,9 +4,6 @@ module.exports = {
   testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
   moduleFileExtensions: ['ts', 'js'],
   moduleNameMapper: {
-    '@interfaces/(.*)$': '<rootDir>/src/interfaces/$1',
-    '@parse/(.*)$': '<rootDir>/src/parse/$1',
-    '@test/(.*)$': '<rootDir>/test/$1'
   },
   collectCoverage: true,
   coverageThreshold: {

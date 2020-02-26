@@ -1,4 +1,5 @@
 const path = require('path');
+const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -8,7 +9,8 @@ module.exports = {
   mode: 'production',
   resolve: {
     symlinks: false,
-    extensions: ['.js', '.json', '.ts']
+    extensions: ['.js', '.json', '.ts'],
+    plugins: [new TsConfigPathsPlugin()]
   },
   output: {
     libraryTarget: 'commonjs2',

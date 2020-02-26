@@ -4,6 +4,8 @@
       "es2017"
     ],
     "removeComments": false,
+    "module": "commonjs",
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -12,23 +14,18 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strict": true,
+    "declaration": true,
     "sourceMap": true,
+    "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "target": "es2017",
-    "outDir": "lib",
     "baseUrl": "src",
     "paths": {
-      "@test/*": [
-        "../test/*"
-      ],
-      "@interfaces/*": [
-        "interfaces/*"
-      ],
-      "@parse/*": [
-        "parse/*"
-      ]
     }
   },
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules/**/*",
     ".webpack/**/*",
