@@ -15,9 +15,7 @@ module.exports = {
     }
   },
   collectCoverageFrom: [
-    'src/**/*.ts',
-    '!src/interfaces/*.ts',
-    '!src/index.ts'
+    'src/**/*.ts'
   ],
   verbose: true
 };

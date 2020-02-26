@@ -1,5 +1,5 @@
-import * as envVars from '../../src/parse/envVars';
-import { VariableConfig, VariableType } from '../../src/interfaces/config';
+import * as envVars from '../../src/index';
+import { VariableConfig, VariableType } from '../../src/index';
 
 import { checkAllMocksCalled } from '../tools';
 
