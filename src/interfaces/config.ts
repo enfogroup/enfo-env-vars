@@ -7,11 +7,11 @@ export enum VariableType {
 }
 
 export interface VariableConfig {
-  defaultValue: any;
-  name: string;
-  regex: string;
-  required?: boolean;
+  defaultValue?: any;
   enum?: any[];
+  name: string;
+  regex?: string;
+  required?: boolean;
   type: VariableType;
 }
 

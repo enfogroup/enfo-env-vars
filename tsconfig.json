@@ -21,11 +21,11 @@
       "@test/*": [
         "../test/*"
       ],
-      "@lib/*": [
-        "lib/*"
+      "@interfaces/*": [
+        "interfaces/*"
       ],
-      "@models/*" : [
-        "models/*"
+      "@parse/*": [
+        "parse/*"
       ]
     }
   },
