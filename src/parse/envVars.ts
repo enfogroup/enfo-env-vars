@@ -1,4 +1,4 @@
-import { VariableConfig, VariableType } from '@interfaces/config';
+import { VariableConfig, VariableType } from '../interfaces/config';
 
 export const parse = (config: VariableConfig[]): any => {
   const result: any = {};
@@ -10,7 +10,6 @@ export const parse = (config: VariableConfig[]): any => {
 
   return result;
 };
-export default parse;
 
 export const getValue = (name: string): string | undefined => {
   return process.env[name];
@@ -78,9 +77,9 @@ export const parseEnum = (config: VariableConfig, value: string): any => {
   return value;
 };
 
-export const truthyValues = ['true'];
+export const truthyValues = ['true', '1', 'yes'];
 export const parseBoolean = (value: string): boolean => {
-  return truthyValues.includes(value);
+  return truthyValues.includes(value.toLowerCase());
 };
 
 export const parseJSON = (value: string): any => {

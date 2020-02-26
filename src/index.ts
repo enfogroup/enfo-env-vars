@@ -1,3 +1,3 @@
-import * as parse from 'parse/envVars';
+import * as envVars from './parse/envVars';
 
-export default parse;
+export default envVars.parse;

@@ -1,7 +1,7 @@
-import * as envVars from '@parse/envVars';
-import { VariableConfig, VariableType } from '@interfaces/config';
+import * as envVars from '../../src/parse/envVars';
+import { VariableConfig, VariableType } from '../../src/interfaces/config';
 
-import { checkAllMocksCalled } from '@test/tools';
+import { checkAllMocksCalled } from '../tools';
 
 describe('index', () => {
   beforeEach(() => {
@@ -321,6 +321,16 @@ describe('index', () => {
 
       truthyValues.forEach((value: string) => {
         const output = envVars.parseBoolean(value);
+
+        expect(output).toEqual(true);
+      });
+    });
+
+    it('should be able to parse capital letters  to true', () => {
+      const truthyValues = envVars.truthyValues;
+
+      truthyValues.forEach((value: string) => {
+        const output = envVars.parseBoolean(value.toUpperCase());
 
         expect(output).toEqual(true);
       });
