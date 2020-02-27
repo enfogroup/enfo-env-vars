@@ -57,26 +57,28 @@ Output
 }
 ```
 
-## Usage
+## Configuration
 
 To parse variables from process.env you specify an array of variables to be parsed. For each variable an object with key must be defined.
 
-Required
+### Required
 
  * name - name of the variable in process.env. For example process.env.stage would be referred to by 'stage'
  * type - the type to which the variable should be parsed
 
-Optional
+### Optional
 
  * defaultValue - fallback value if the variable is undefined. Does not have to match type
  * required - if the variable is undefined and required is true an error will be thrown
  * regex - used to check if the value matches a regex. Mainly intended for string type variables
 
-Conditional
+### Conditional
 
  * enum - used for type enum to specify possible values. Array of values, can be of any type.
 
-There are multiple different types as which a variable can be parsed. If the variable cannot be parsed to the type an Error will be thrown. In Typescript the type must be defined using VariableType. In javascript the strings below will suffice.
+### Types
+
+There are multiple different types as which a variable can be parsed. If the variable cannot be parsed to the type an Error will be thrown. In Typescript the types must be defined using VariableType. In Javascript the strings below will suffice.
 
  * string
  * number
