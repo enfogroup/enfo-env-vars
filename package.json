@@ -8,6 +8,11 @@
   "author": "Urban Pettersson <urban.pettersson@enfogroup.com>",
   "license": "MIT",
   "private": false,
+  "keywords": [
+    "env",
+    "environment variables",
+    "process.env"
+  ],
   "scripts": {
     "cm": "git-cz",
     "clean": "rm -rf ./dist",
