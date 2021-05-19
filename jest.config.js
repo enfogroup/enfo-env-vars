@@ -4,6 +4,9 @@ module.exports = {
   testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
   moduleFileExtensions: ['ts', 'js'],
   moduleNameMapper: {
+    '@clients/(.*)$': '<rootDir>/src/clients/$1',
+    '@test/(.*)$': '<rootDir>/test/$1',
+    '@models/(.*)$': '<rootDir>/src/models/$1'
   },
   collectCoverage: true,
   coverageThreshold: {
