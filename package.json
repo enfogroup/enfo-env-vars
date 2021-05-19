@@ -18,7 +18,7 @@
     "clean": "rm -rf ./dist",
     "build-webpack": "webpack --config webpack.config.js",
     "build": "npm-run-all -s clean build-webpack",
-    "prerelease": "yarn test && yarn build",
+    "prerelease": "npm test && npm run build",
     "copy-to-dist": "cp package.json dist/ && cp *.md dist/ && cp .npmignore dist/",
     "lint": "eslint 'test/**/*.ts' 'src/**/*.ts'",
     "jest": "jest",
