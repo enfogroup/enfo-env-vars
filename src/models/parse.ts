@@ -46,7 +46,7 @@ export interface StringVariable extends BaseVariable<string> {
   /**
    * Regular expression to check the string against
    */
-  regex?: string;
+  regex?: string | RegExp;
 }
 
 /**
