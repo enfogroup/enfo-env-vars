@@ -1,24 +1,48 @@
 const path = require('path');
 const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  devtool: 'source-map',
-  entry: {
-    index: './src/index.ts'
-  },
+  context: __dirname,
   mode: 'production',
+  entry: './src/index',
+  devtool: 'cheap-source-map',
   resolve: {
+    extensions: ['.mjs', '.json', '.ts', 'js'],
     symlinks: false,
-    extensions: ['.js', '.json', '.ts'],
     plugins: [new TsConfigPathsPlugin()]
   },
   output: {
-    libraryTarget: 'commonjs2',
-    path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    libraryTarget: 'commonjs',
+    path: path.join(__dirname, '.dist'),
+    filename: 'index.js'
   },
   target: 'node',
   module: {
-    rules: [{ test: /\.ts(x?)$/, include: path.resolve(__dirname, 'src'), loader: 'ts-loader' }]
-  }
+    rules: [
+      {
+        test: /\.(tsx?)$/,
+        loader: 'ts-loader',
+        include: path.resolve(__dirname, 'src'),
+        options: {
+          configFile: 'tsconfig.build.json',
+          compiler: 'ttypescript'
+        }
+      }
+    ]
+  },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'package.json',
+          to: '.'
+        },
+        {
+          from: 'README.MD',
+          to: '.'
+        }
+      ]
+    })
+  ]
 };

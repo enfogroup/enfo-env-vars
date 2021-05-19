@@ -1,30 +1,48 @@
 {
   "compilerOptions": {
-    "lib": [
-      "es2017"
-    ],
+    "lib": [],
     "removeComments": false,
-    "module": "commonjs",
-    "esModuleInterop": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": true,
+    "noImplicitReturns": true,
     "strictNullChecks": true,
     "strict": true,
-    "declaration": true,
     "sourceMap": true,
-    "outDir": "dist",
+    "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
+    "declaration": true,
+    "esModuleInterop": true,
+    "target": "es2018",
+    "outDir": ".dist",
     "baseUrl": "src",
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true
+      }
+    ],
     "paths": {
+      "@test/*": [
+        "../test/*"
+      ],
+      "@models/*": [
+        "models/*"
+      ],
+      "@clients/*": [
+        "clients/*"
+      ],
+      "@helpers/*": [
+        "helpers/*"
+      ]
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test/**/*"
   ],
   "exclude": [
     "node_modules/**/*",
