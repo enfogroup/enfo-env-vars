@@ -20,7 +20,6 @@
     "build": "npm-run-all -s clean build-webpack",
     "prerelease": "yarn test && yarn build",
     "copy-to-dist": "cp package.json dist/ && cp *.md dist/ && cp .npmignore dist/",
-    "release": "standard-version --no-verify",
     "lint": "eslint 'test/**/*.ts' 'src/**/*.ts'",
     "jest": "jest",
     "test": "npm-run-all -s lint jest",
@@ -62,13 +61,6 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "standard-version": {
-    "scripts": {
-      "prerelease": "yarn prerelease",
-      "postchangelog": "yarn copy-to-dist",
-      "posttag": "echo 'Now run cd dist/ && yarn publish && cd ../ && git push --follow-tags origin master'"
     }
   }
 }
