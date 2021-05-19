@@ -1,4 +1,4 @@
-import { BooleanVariable, NumericalVariable, ParseParameters, Variable, VariableType } from 'models/parse';
+import { BooleanVariable, NumericalVariable, ParseParameters, Variable, VariableType } from '@models/parse';
 
 /**
  * List of truthy values checked by default, can be extended in ParseParameters
