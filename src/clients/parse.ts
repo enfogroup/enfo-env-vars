@@ -73,12 +73,16 @@ export const parseVariable = (config: Variable, value: string | undefined): any 
     return config.defaultValue;
   }
   switch (config.type) {
+    // istanbul ignore next
     case VariableType.STRING:
       return parseString(value);
+    // istanbul ignore next
     case VariableType.NUMBER:
       return parseNumber(config, value);
+    // istanbul ignore next
     case VariableType.BOOLEAN:
       return parseBoolean(config, value);
+    // istanbul ignore next
     case VariableType.JSON:
       return parseJSON(value);
     default:
@@ -120,7 +124,7 @@ export const parseNumber = (config: NumericalVariable, value: string): number =>
  * Value as string
  */
 export const parseBoolean = (config: BooleanVariable, value: string): boolean => {
-  return [truthyValues, ...(config.truthyValues || [])].includes(value.toLowerCase());
+  return truthyValues.concat(...(config.truthyValues || [])).includes(value.toLowerCase());
 };
 
 /**
