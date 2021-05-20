@@ -57,7 +57,7 @@ Output
 
 ## Configuration
 
-To parse variables from process.env you specify an array of variables to be parsed. For each variable an object with key must be defined. If you are using Typescript a type can be passed in order to cast the created object to a desired type. If the type matches the output is not validated in any manner.
+To parse variables from process.env you specify an array of variables to be parsed. For each variable an object with a unique key must be defined. If you are using Typescript a type can be passed in order to cast the created object to a desired type. If the type matches the output is not validated in any manner.
 
 The package supports four different types of variable formats.
 
@@ -70,7 +70,7 @@ The package supports four different types of variable formats.
 
 The following parameters are available on all variable configurations.
 
-* name - name of the variable in process.env. For example process.env.stage would be referred to by 'stage
+* name - name of the variable in process.env. For example process.env.stage would be referred to as 'stage'
 * type - the type to which the variable should be parsed
 * defaultValue - optional default value to use if no value is found in process.env
 * required - optional flag to set to throw if the value could not be found. If set defaultValue gets ignored.
@@ -114,7 +114,7 @@ Numerical variables expose no extra configurable parameters. Configuration examp
 ```typescript
 {
   type: VariableType.STRING,
-  name: age,
+  name: 'age',
   required: true
 };
 ```
@@ -136,7 +136,7 @@ Configuration examples:
 ```typescript
 {
   type: VariableType.BOOLEAN,
-  name: deploySatellite,
+  name: 'deploySatellite',
   defaultValue: false
 };
 ```
@@ -144,7 +144,7 @@ Configuration examples:
 ```typescript
 {
   type: VariableType.BOOLEAN,
-  name: deploySatellite,
+  name: 'deploySatellite',
   truthyValues: ['yarp', 'yup']
 };
 ```
@@ -158,17 +158,17 @@ process.env.fancyData = JSON.stringify({b: 42})
 ```
 
 Or in an environment variable file:
+
 ```yml
 fancyData: '{"b":42}'
 ```
-
 
 Configuration examples:
 
 ```typescript
 {
   type: VariableType.JSON,
-  name: fancyData,
+  name: 'fancyData',
   defaultValue: { a: 4711 }
 };
 ```
@@ -176,7 +176,7 @@ Configuration examples:
 ```typescript
 {
   type: VariableType.JSON,
-  name: fancyData,
+  name: 'fancyData',
   required: true
 };
 ```
