@@ -88,7 +88,7 @@ Configuration examples:
   type: VariableType.STRING,
   name: 'stage',
   defaultValue: 'prod'
-};
+}
 ```
 
 ```typescript
@@ -96,7 +96,7 @@ Configuration examples:
   type: VariableType.STRING,
   name: 'stage',
   regex: '/^[a-z]{3,5}$/'
-};
+}
 ```
 
 ### Numerical variable configuration
@@ -108,7 +108,7 @@ Numerical variables expose no extra configurable parameters. Configuration examp
   type: VariableType.NUMBER,
   name: 'age',
   defaultValue: 42
-};
+}
 ```
 
 ```typescript
@@ -116,7 +116,7 @@ Numerical variables expose no extra configurable parameters. Configuration examp
   type: VariableType.STRING,
   name: 'age',
   required: true
-};
+}
 ```
 
 ### Boolean variable configuration
@@ -138,7 +138,7 @@ Configuration examples:
   type: VariableType.BOOLEAN,
   name: 'deploySatellite',
   defaultValue: false
-};
+}
 ```
 
 ```typescript
@@ -146,7 +146,7 @@ Configuration examples:
   type: VariableType.BOOLEAN,
   name: 'deploySatellite',
   truthyValues: ['yarp', 'yup']
-};
+}
 ```
 
 ### JSON variable configuration
@@ -170,7 +170,7 @@ Configuration examples:
   type: VariableType.JSON,
   name: 'fancyData',
   defaultValue: { a: 4711 }
-};
+}
 ```
 
 ```typescript
@@ -178,7 +178,7 @@ Configuration examples:
   type: VariableType.JSON,
   name: 'fancyData',
   required: true
-};
+}
 ```
 
 ## License
