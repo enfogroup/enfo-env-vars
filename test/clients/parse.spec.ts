@@ -50,47 +50,130 @@ describe('clients/parse', () => {
 
   describe('validateValue', () => {
     it('should accept undefined value is required is false', () => {
-      parse.validateValue({ type: VariableType.NUMBER, name: '' }, undefined);
+      parse.validateValue({ type: VariableType.NUMBER, name: 'a' }, undefined);
     });
 
     it('should throw if value is undefined and required is true', () => {
       expect(() => {
-        parse.validateValue({ type: VariableType.NUMBER, name: '', required: true }, undefined);
+        parse.validateValue({ type: VariableType.NUMBER, name: 'a', required: true }, undefined);
       }).toThrow('variable is required');
     });
 
     it('should do nothing if variable type is string and regex is undefined', () => {
-      parse.validateValue({ type: VariableType.STRING, name: '' }, 'something');
+      parse.validateValue({ type: VariableType.STRING, name: 'a' }, 'something');
     });
 
     it('should accept variable value if type is string and the regex matches', () => {
-      parse.validateValue({ type: VariableType.STRING, name: '', regex: /^[a-z]{5}$/ }, 'hello');
+      parse.validateValue({ type: VariableType.STRING, name: 'a', regex: /^[a-z]{5}$/ }, 'hello');
     });
 
     it('should throw if type is string and the regex does not match', () => {
       expect(() => {
-        parse.validateValue({ type: VariableType.STRING, name: '', regex: /^[a-z]{5}$/ }, 'broken');
+        parse.validateValue({ type: VariableType.STRING, name: 'a', regex: /^[a-z]{5}$/ }, 'broken');
       }).toThrow('does not match');
     });
   });
 
   describe('parseVariable', () => {
+    it('should return default value if value is undefined', () => {
+      const output = parse.parseVariable({ type: VariableType.STRING, name: 'a', defaultValue: 'default!' }, undefined);
 
+      expect(output).toEqual('default!');
+    });
+
+    it('should throw if type is not a VariableType', () => {
+      expect(() => {
+        parse.parseVariable({ type: 'banana' as VariableType, name: 'something' }, 'banana');
+      }).toThrow('Unknown variable type');
+    });
   });
 
   describe('parseString', () => {
+    it('should return value as string', () => {
+      const output = parse.parseString('something');
 
+      expect(output).toEqual('something');
+    });
   });
 
   describe('parseNumber', () => {
+    it('should parse integer value', () => {
+      const output = parse.parseNumber({ type: VariableType.NUMBER, name: 'number' }, '4711');
 
+      expect(output).toEqual(4711);
+    });
+
+    it('should parse 0 (zero)', () => {
+      const output = parse.parseNumber({ type: VariableType.NUMBER, name: 'number' }, '0');
+
+      expect(output).toEqual(0);
+    });
+
+    it('should parse negative value', () => {
+      const output = parse.parseNumber({ type: VariableType.NUMBER, name: 'number' }, '-42');
+
+      expect(output).toEqual(-42);
+    });
+
+    it('should parse float', () => {
+      const output = parse.parseNumber({ type: VariableType.NUMBER, name: 'number' }, '47.11');
+
+      expect(output).toEqual(47.11);
+    });
+
+    it('should throw if input is not a number as string', () => {
+      expect(() => {
+        parse.parseNumber({ type: VariableType.NUMBER, name: 'number' }, 'banana');
+      }).toThrow('Unable to parse');
+    });
   });
 
   describe('parseBoolean', () => {
+    it('should parse default truthy values to true', () => {
+      parse.truthyValues.forEach((truthyValue: string): void => {
+        const output = parse.parseBoolean({ type: VariableType.BOOLEAN, name: 'boolean' }, truthyValue);
 
+        expect(output).toEqual(true);
+      });
+    });
+
+    it('should parse configured truthy values to true', () => {
+      const values = ['yarp', 'yup', 'sotrue'];
+      values.forEach((truthyValue: string): void => {
+        const output = parse.parseBoolean({ type: VariableType.BOOLEAN, name: 'boolean', truthyValues: values }, truthyValue);
+
+        expect(output).toEqual(true);
+      });
+    });
+
+    it('should parse other values to false', () => {
+      const values = ['false', '0', 'no', 'banana'];
+
+      values.forEach((value: string): void => {
+        const output = parse.parseBoolean({ type: VariableType.BOOLEAN, name: 'boolean' }, value);
+
+        expect(output).toEqual(false);
+      });
+    });
   });
 
   describe('parseJSON', () => {
+    it('should parse object', () => {
+      const data = { a: 4711, b: true };
+      const input = JSON.stringify(data);
 
+      const output = parse.parseJSON(input);
+
+      expect(output).toMatchObject(data);
+    });
+
+    it('should parse array', () => {
+      const data = [4711, true, 'banana'];
+      const input = JSON.stringify(data);
+
+      const output = parse.parseJSON(input);
+
+      expect(output).toMatchObject(data);
+    });
   });
 });
