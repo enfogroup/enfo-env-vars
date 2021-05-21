@@ -12,7 +12,7 @@ npm install @enfo/env-vars --save
 Parse the variables by type
 
 ```typescript
-import { parse, VariableType } from '@enfo/env-vars';
+import { parseVariables, VariableType } from '@enfo/env-vars';
 
 process.env.stage='test'
 process.env.importantValue='12.34'
@@ -23,12 +23,12 @@ interface MyVariables {
   deploySatellite: boolean;
 }
 
-const config = parse<MyVariables>({
+const config = parseVariables<MyVariables>({
   variables: [
     {
       name: 'stage',
       type: VariableType.STRING,
-      regex: '^[a-z]*$'
+      regex: /^[a-z]+$/
     },
     {
       name: 'importantNumber',

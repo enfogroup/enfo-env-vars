@@ -12,15 +12,13 @@ export const truthyValues = ['true', '1', 'yes'];
  * @returns
  * Object containing the parsed variables
  */
-export const parse = <T>(params: ParseParameters): T => {
-  const result: any = {};
-  params.variables.forEach((config: Variable) => {
+export const parseVariables = <T>(params: ParseParameters): T => {
+  return params.variables.reduce((acc: T, config: Variable): T => {
     const value = getValue(config.name);
     validateValue(config, value);
-    result[config.name] = parseVariable(config, value);
-  });
-
-  return result;
+    acc[config.name as keyof T] = parseVariable(config, value);
+    return acc;
+  }, {} as T);
 };
 
 /**

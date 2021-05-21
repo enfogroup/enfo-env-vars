@@ -15,7 +15,7 @@ describe('clients/parse', () => {
       process.env.parseOne = 'hello world';
       process.env.parseTwo = '4711';
 
-      const output = parse.parse<{ parseOne: string, parseTwo: number }>({
+      const output = parse.parseVariables<{ parseOne: string, parseTwo: number }>({
         variables: [{
           name: 'parseOne',
           type: VariableType.STRING
