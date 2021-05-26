@@ -181,6 +181,14 @@ Configuration examples:
 }
 ```
 
+## Disabling validation
+
+When running unit tests or similar you might want to disable the required check on all variables. You can achieve this by setting the environmental variable ENFO_ENV_VARS_DISABLE_REQUIRED to any truthy value before running your tests.
+
+```
+process.env.ENFO_ENV_VARS_DISABLE_REQUIRED = 'anyvaluewilldo'
+```
+
 ## License
 
 @enfo/env-vars is licensed under the terms of the MIT license.
