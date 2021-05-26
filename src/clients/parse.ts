@@ -40,7 +40,7 @@ export const getValue = (name: string): string | undefined => {
  */
 export const validateValue = (config: Variable, value: string | undefined): void => {
   if (value === undefined) {
-    if (config.required) {
+    if (config.required && !process.env.ENFO_ENV_VARS_DISABLE_REQUIRED) {
       throw new Error(`No value found for ${config.name}. This variable is required and a value must be set.`);
     }
     return;
