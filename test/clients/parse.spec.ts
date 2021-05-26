@@ -8,6 +8,7 @@ describe('clients/parse', () => {
   beforeEach(() => {
   });
   afterEach(() => {
+    delete process.env.ENFO_ENV_VARS_DISABLE_REQUIRED;
   });
 
   describe('parse', () => {
@@ -57,6 +58,11 @@ describe('clients/parse', () => {
       expect(() => {
         parse.validateValue({ type: VariableType.NUMBER, name: 'a', required: true }, undefined);
       }).toThrow('variable is required');
+    });
+
+    it('should not throw if value is undefined and ENFO_ENV_VARS_DISABLE_REQUIRED is set to true', () => {
+      process.env.ENFO_ENV_VARS_DISABLE_REQUIRED = 'something';
+      parse.validateValue({ type: VariableType.NUMBER, name: 'a' }, undefined);
     });
 
     it('should do nothing if variable type is string and regex is undefined', () => {
