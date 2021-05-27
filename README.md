@@ -113,7 +113,7 @@ Numerical variables expose no extra configurable parameters. Configuration examp
 
 ```typescript
 {
-  type: VariableType.STRING,
+  type: VariableType.NUMBER,
   name: 'age',
   required: true
 }
