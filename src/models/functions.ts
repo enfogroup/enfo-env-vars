@@ -1,5 +1,5 @@
 import { MaybeUndefined } from './common';
-import { CustomParserFunction } from './parse';
+import { BooleanVariable, JSONVariable, NumericalVariable, StringVariable, VariableType } from './parse';
 
 /**
  * Function signatures used for stand alone parsing functions
@@ -42,3 +42,30 @@ export type ExtendedParserFunction<T, U extends object> = ParserFunctions<T, U> 
    */
   (name: string, defaultValue: T): T
 }
+
+/**
+ * Configuration used by string parsing function
+ */
+export type StringConfig = Omit<StringVariable, 'name' | 'type'>
+/**
+  * Configuration used by numerical parsing function
+  */
+export type NumericalConfig = Omit<NumericalVariable, 'name' | 'type'>
+/**
+  * Configuration used by boolean parsing function
+  */
+export type BooleanConfig = Omit<BooleanVariable, 'name' | 'type'>
+/**
+  * Configuration used by JSON parsing function
+  */
+export type JSONConfig = Omit<JSONVariable, 'name' | 'type'>
+
+/**
+ * Parses process.env value
+ */
+export type CustomParserFunction<T> = (value?: T) => T
+
+/**
+ * VariableType enum bar JSON type
+ */
+export type VariableTypeBarJSON = Exclude<VariableType, VariableType.JSON>

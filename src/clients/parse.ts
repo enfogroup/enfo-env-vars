@@ -1,6 +1,4 @@
-import { MaybeUndefined } from '@models/common';
-import { ParserFunctions } from '@models/internal';
-import { BooleanConfig, BooleanVariable, CustomParserFunction, JSONConfig, NumericalConfig, NumericalVariable, ParseParameters, StringConfig, Variable, VariableType } from '@models/parse';
+import { BooleanVariable, NumericalVariable, ParseParameters, Variable, VariableType } from '@models/parse';
 
 /**
  * List of truthy values checked by default, can be extended in ParseParameters
@@ -135,40 +133,3 @@ export const parseBoolean = (config: BooleanVariable, value: string): boolean =>
 export const parseJSON = (value: string): object => {
   return JSON.parse(value);
 };
-
-/**
- * Internal function used for all types of parsing
- * @param type
- * VariableType value
- * @returns
- * T or undefined
- */
-const parseEnvGeneric = <T, U extends object>(type: VariableType): ParserFunctions<T, U> => {
-  const parseFunction: ParserFunctions<T, U> = (name: string, other?: T | CustomParserFunction<T> | U): any => {
-    if (!other) {
-      return parseVariable({
-        type,
-        name
-      }) as MaybeUndefined<T>;
-    } else if (typeof other === 'function') {
-      const value: MaybeUndefined<T> = parseVariable({
-        type,
-        name
-      });
-      return (other as CustomParserFunction<T>)(value);
-    } else {
-      return parseVariable({
-        type,
-        name,
-        ...other
-      }) as MaybeUndefined<T>;
-    }
-  };
-
-  return parseFunction;
-};
-
-export const parseEnvString = parseEnvGeneric<string, StringConfig>(VariableType.STRING);
-export const parseEnvNumerical = parseEnvGeneric<number, NumericalConfig>(VariableType.NUMBER);
-export const parseEnvBoolean = parseEnvGeneric<boolean, BooleanConfig>(VariableType.BOOLEAN);
-export const parseEnvJSON = parseEnvGeneric<object, JSONConfig>(VariableType.JSON);
