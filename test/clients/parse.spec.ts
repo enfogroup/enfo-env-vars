@@ -82,14 +82,15 @@ describe('clients/parse', () => {
 
   describe('parseVariable', () => {
     it('should return default value if value is undefined', () => {
-      const output = parse.parseVariable({ type: VariableType.STRING, name: 'a', defaultValue: 'default!' }, undefined);
+      const output = parse.parseVariable({ type: VariableType.STRING, name: 'a', defaultValue: 'default!' });
 
       expect(output).toEqual('default!');
     });
 
     it('should throw if type is not a VariableType', () => {
       expect(() => {
-        parse.parseVariable({ type: 'banana' as VariableType, name: 'something' }, 'banana');
+        process.env.shouldThrow = 'banana';
+        parse.parseVariable({ type: 'banana' as VariableType, name: 'shouldThrow' });
       }).toThrow('Unknown variable type');
     });
   });
