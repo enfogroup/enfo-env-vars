@@ -29,6 +29,10 @@ interface BaseVariable<T> {
    */
   name: string;
   /**
+   * Type of variable
+   */
+  type: VariableType;
+  /**
    * Default value for variable, used if required is false and no value is found
    */
   defaultValue?: T;
@@ -75,6 +79,23 @@ export interface JSONVariable extends BaseVariable<object> {
 }
 
 /**
+ * Configuration used by string parsing function
+ */
+export type StringConfig = Omit<StringVariable, 'name' | 'type'>
+/**
+ * Configuration used by numerical parsing function
+ */
+export type NumericalConfig = Omit<NumericalVariable, 'name' | 'type'>
+/**
+ * Configuration used by boolean parsing function
+ */
+export type BooleanConfig = Omit<BooleanVariable, 'name' | 'type'>
+/**
+ * Configuration used by JSON parsing function
+ */
+export type JSONConfig = Omit<JSONVariable, 'name' | 'type'>
+
+/**
  * A variable to parse
  */
 export type Variable = StringVariable | NumericalVariable | BooleanVariable | JSONVariable;
@@ -88,3 +109,8 @@ export interface ParseParameters {
    */
   variables: Variable[];
 }
+
+/**
+ * Parses process.env value
+ */
+export type CustomParserFunction<T> = (value?: T) => T
