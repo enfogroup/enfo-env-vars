@@ -61,7 +61,7 @@ Output
   deploySatellite: false
 }
 'test'
-42
+12.34
 'value is missing'
 ```
 
