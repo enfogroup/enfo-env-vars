@@ -44,7 +44,7 @@ const parseEnvGenericSimple = <T, U extends object>(type: VariableType): ParserF
  * @returns
  * T or undefined
  */
-const parseEnvGeneric = <T, U extends object>(type: VariableTypeBarJSON, variableType: 'string' | 'number' | 'boolean'): ExtendedParserFunction<TypeError, U> => {
+const parseEnvGeneric = <T, U extends object>(type: VariableTypeBarJSON, variableType: 'string' | 'number' | 'boolean'): ExtendedParserFunction<T, U> => {
   const parseFunction: ExtendedParserFunction<T, U> = (name: string, other?: T | CustomParserFunction<T> | U): any => {
     // eslint-disable-next-line valid-typeof
     if (typeof other === variableType) {
@@ -57,7 +57,7 @@ const parseEnvGeneric = <T, U extends object>(type: VariableTypeBarJSON, variabl
     return parseEnvGenericSimple<T, U>(type)(name, (other as any));
   };
 
-  return parseFunction as any;
+  return parseFunction;
 };
 
 export const parseEnvString = parseEnvGeneric<string, StringConfig>(VariableType.STRING, 'string');
