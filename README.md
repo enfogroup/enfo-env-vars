@@ -65,7 +65,7 @@ Output
 'value is missing'
 ```
 
-## Configuration
+## Configuring parseVariables
 
 To parse variables from process.env you specify an array of variables to be parsed. For each variable an object with a unique key must be defined. If you are using Typescript a type can be passed in order to cast the parsed output to a desired type. If the type matches the output is not validated in any manner.
 
@@ -76,7 +76,7 @@ The package supports four different types of variable formats.
 * boolean
 * json
 
-## Variable configuration
+### Variable configuration
 
 The following parameters are available on all variable configurations.
 
