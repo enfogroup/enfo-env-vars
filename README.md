@@ -1,5 +1,5 @@
 # @enfo/env-vars
-> A small package for parsing process.env according to a configuration of your choosing.
+> A small package for parsing process.env according to configuration of your choosing.
 
 ## Installation
 
@@ -9,10 +9,10 @@ npm install @enfo/env-vars --save
 
 ## Usage
 
-Parse the variables by type
+@enfo/env-vars exposes two types of functions. One for parsing an array of values and another set for parsing a specific variable.
 
 ```typescript
-import { parseVariables, VariableType } from '@enfo/env-vars';
+import { parseVariables, VariableType, parseEnvString, parseEnvNumerical } from '@enfo/env-vars';
 
 process.env.stage='test'
 process.env.importantValue='12.34'
@@ -43,6 +43,13 @@ const config = parseVariables<MyVariables>({
 });
 
 console.log(config)
+
+const myString = parseEnvString('stage')
+console.log(myString)
+const myValue = parseEnvNumerical('importantNumber', 42)
+console.log(myValue)
+const anotherString = parseEnvString('notSet', (value?: string) => { return value ? 'value is set' : 'value is missing' )
+console.log(anotherString)
 ```
 
 Output
@@ -53,6 +60,9 @@ Output
   importantNumber: 12.34,
   deploySatellite: false
 }
+'test'
+42
+'value is missing'
 ```
 
 ## Configuration
@@ -181,7 +191,38 @@ Configuration examples:
 }
 ```
 
-## Disabling validation
+## Stand alone functions
+
+In addition to the array parsing function stand alone functions exist for all variable types.
+
+### String functions 
+
+* parseEnvString(name: string)
+* parseEnvString(name: string, defaultValue: string)
+* parseEnvString(name: string, (value?: string) => string)
+* parseEnvString(name: string, { required: true } ) - See [string variable configuration](#string-variable-configuration) for more information
+
+### Numerical functions
+
+* parseEnvNumerical(name: string)
+* parseEnvNumerical(name: string, defaultValue: number)
+* parseEnvNumerical(name: string, (value?: number) => number)
+* parseEnvNumerical(name: string, { required: true } ) - See [numerical variable configuration](#numerical-variable-configuration) for more information
+
+### Boolean functions
+
+* parseEnvBoolean(name: string)
+* parseEnvBoolean(name: string, defaultValue: boolean)
+* parseEnvBoolean(name: string, (value?: boolean) => boolean)
+* parseEnvBoolean(name: string, { required: true } ) - See [boolean variable configuration](#boolean-variable-configuration) for more information
+
+### JSON functions
+
+* parseEnvJSON(name: string)
+* parseEnvJSON(name: string, (value?: object) => object)
+* parseEnvJSON(name: string, { required: true } ) - See [JSON variable configuration](#json-variable-configuration) for more information
+
+## Disabling required validation
 
 When running unit tests or similar you might want to disable the required check on all variables. You can achieve this by setting the environmental variable ENFO_ENV_VARS_DISABLE_REQUIRED to any truthy value before running your tests.
 
