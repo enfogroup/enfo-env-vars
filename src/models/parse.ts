@@ -43,7 +43,7 @@ interface BaseVariable<T> {
 }
 
 /**
- * String variable
+ * String variable configuration, used by parseVariables
  */
 export interface StringVariable extends BaseVariable<string> {
   type: VariableType.STRING;
@@ -54,14 +54,14 @@ export interface StringVariable extends BaseVariable<string> {
 }
 
 /**
- * Numerical variable
+ * Numerical variable configuration, used by parseVariables
  */
 export interface NumericalVariable extends BaseVariable<number> {
   type: VariableType.NUMBER;
 }
 
 /**
- * Boolean variable
+ * Boolean variable configuration, used by parseVariables
  */
 export interface BooleanVariable extends BaseVariable<boolean> {
   /**
@@ -72,7 +72,7 @@ export interface BooleanVariable extends BaseVariable<boolean> {
 }
 
 /**
- * JSON variable
+ * JSON variable configuration, used by parseVariables
  */
 export interface JSONVariable extends BaseVariable<object> {
   type: VariableType.JSON
