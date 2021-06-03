@@ -1,6 +1,6 @@
 {
   "name": "@enfo/env-vars",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "A small package for parsing process.env according to a configuration of your choosing.",
   "main": "index.js",
   "types": "index.d.ts",
