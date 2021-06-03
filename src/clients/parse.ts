@@ -14,9 +14,7 @@ export const truthyValues = ['true', '1', 'yes'];
  */
 export const parseVariables = <T>(params: ParseParameters): T => {
   return params.variables.reduce((acc: T, config: Variable): T => {
-    const value = getValue(config.name);
-    validateValue(config, value);
-    acc[config.name as keyof T] = parseVariable(config, value);
+    acc[config.name as keyof T] = parseVariable(config);
     return acc;
   }, {} as T);
 };
@@ -66,7 +64,9 @@ export const validateValue = (config: Variable, value: string | undefined): void
  * @throws
  * If variable type is not a proper value
  */
-export const parseVariable = (config: Variable, value: string | undefined): any => {
+export const parseVariable = (config: Variable): any => {
+  const value = getValue(config.name);
+  validateValue(config, value);
   if (value === undefined) {
     return config.defaultValue;
   }
