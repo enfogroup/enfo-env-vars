@@ -2,6 +2,11 @@ import { MaybeUndefined } from './common';
 import { BooleanVariable, JSONVariable, NumericalVariable, StringVariable, VariableType } from './parse';
 
 /**
+ * Parses process.env value
+ */
+export type CustomParserFunction<T> = (value?: T) => T
+
+/**
  * Function signatures used for stand alone parsing functions
  */
 export type ParserFunctions<T, U extends object> = {
@@ -59,11 +64,6 @@ export type BooleanConfig = Omit<BooleanVariable, 'name' | 'type'>
   * Configuration used by JSON parsing function
   */
 export type JSONConfig = Omit<JSONVariable, 'name' | 'type'>
-
-/**
- * Parses process.env value
- */
-export type CustomParserFunction<T> = (value?: T) => T
 
 /**
  * VariableType enum bar JSON type

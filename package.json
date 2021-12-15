@@ -15,52 +15,48 @@
     "parsing"
   ],
   "scripts": {
+    "postinstall": "npx husky install",
+    "prepublishOnly": "npx pinst --disable",
+    "postpublish": "npx pinst --enable",
+    "publish:package": "cd .dist && npm publish",
     "build": "npx webpack",
     "lint": "eslint 'test/**/*.ts' 'src/**/*.ts'",
     "jest": "jest",
     "test": "npm-run-all -s lint jest",
-    "test-watch": "jest --watch",
-    "publish": "npm publish .dist"
+    "test-watch": "jest --watch"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@types/jest": "^25.1.3",
-    "@types/node": "^13.13.52",
-    "@typescript-eslint/eslint-plugin": "^2.21.0",
-    "@typescript-eslint/parser": "^2.21.0",
-    "commitizen": "^4.0.3",
-    "copy-webpack-plugin": "^6.4.0",
-    "cz-conventional-changelog": "^3.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.2.3",
-    "jest": "^25.1.0",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.13",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "commitizen": "^4.2.4",
+    "copy-webpack-plugin": "^10.1.0",
+    "eslint": "^8.4.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.5",
     "npm-run-all": "^4.1.5",
-    "ts-jest": "^25.2.1",
-    "ts-loader": "^8.0.11",
-    "tsconfig-paths": "^3.9.0",
-    "tsconfig-paths-webpack-plugin": "^3.2.0",
-    "ttypescript": "^1.5.12",
-    "typescript": "^3.8.2",
-    "typescript-transform-paths": "^2.2.3",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run jest"
-    }
+    "pinst": "^2.1.6",
+    "ts-jest": "^27.1.1",
+    "ts-loader": "^9.2.6",
+    "tsconfig-paths": "^3.12.0",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
+    "ttypescript": "^1.5.13",
+    "typescript": "^4.5.4",
+    "typescript-transform-paths": "^3.3.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "dependencies": {}
 }
